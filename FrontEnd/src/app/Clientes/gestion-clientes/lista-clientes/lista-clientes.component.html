@@ -1,0 +1,31 @@
+<form>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-text bg-white">
+                <i class="fa fa-search"></i>
+            </div>
+            <input type="text" class="form-control" placeholder="Buscar">
+            <!-- <input type="text" name="filtrar" [(ngModel)]="gestionEmpleadoService.filtroEmpleado" class="form-control" placeholder="Buscar"> -->
+        </div>
+    </div>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Numero Casillero</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Direccion</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let cliente of gestionClienteService.listaClientes|filtroCliente:'Nombre':gestionClienteService.filtroCliente">
+            <td (click)="llenarFormularioCliente(cliente)">{{cliente.NumeroCasillero}}</td>
+            <td (click)="llenarFormularioCliente(cliente)">{{cliente.Nombre}}</td>
+            <td (click)="llenarFormularioCliente(cliente)">{{cliente.Direccion}}</td>
+            <i (click)="eliminarCliente(cliente.NumeroCasillero)" class="fa fa-trash fa-lg - text-danger"></i>
+        </tr>
+    </tbody>
+</table>

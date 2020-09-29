@@ -1,0 +1,68 @@
+<form [formGroup]="gestionClienteService.formularioRegistroCliente" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fa fa-user-circle" [class.blue-icon]="Nombre.valid" [class.red-icon]="Nombre.invalid && Nombre.touched"></i>
+                </div>
+
+            </div>
+            <input type="hidden" name="NumeroCasillero" formControlName="NumeroCasillero">
+
+            <input name="Nombre" formControlName="Nombre" class="form-control" placeholder="Nombre del cliente">
+
+        </div>
+
+        <!--Mensajes de error-->
+
+        <div class="alert alert-danger" *ngIf="Nombre.invalid && (Nombre.touched || Nombre.dirty)">
+
+            <div *ngIf="this.Nombre.hasError('required')">
+                El nombre es requerido
+            </div>
+            <div *ngIf="this.Nombre.hasError('pattern')">
+                El nombre debe contener solo letras
+            </div>
+        </div>
+
+    </div>
+
+    <!--Direccion-->
+
+    <div class=" form-group ">
+        <div class="input-group ">
+            <div class="input-group-prepend ">
+                <div class="input-group-text bg-white ">
+                    <i class="fa fa-home " [class.blue-icon]="Direccion.valid " [class.red-icon]="Direccion.invalid && Direccion.touched "></i>
+                </div>
+
+            </div>
+
+            <input name="Direccion " formControlName="Direccion" class="form-control " placeholder="Dirección del cliente ">
+
+        </div>
+
+        <!--Mensajes de error-->
+
+        <div class="alert alert-danger" *ngIf="Direccion.invalid && (Direccion.touched || Direccion.dirty)">
+
+            <div *ngIf="this.Direccion.hasError('required')">
+                La dirección es requerida
+            </div>
+            <div *ngIf="this.Direccion.hasError('maxlength')">
+                La dirección debe tener maximo 10 caracteres
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="form-group ">
+        <button class="btn btn-primary btn-lg btn-block " (click)="limpiarFormulario()">Limpiar</button>
+    </div>
+    <br>
+    <div class="form-group ">
+        <button class="btn btn-success btn-lg btn-block " [disabled]="gestionClienteService.formularioRegistroCliente.invalid" type="submit "> Guardar</button>
+    </div>
+
+</form>
+ 
